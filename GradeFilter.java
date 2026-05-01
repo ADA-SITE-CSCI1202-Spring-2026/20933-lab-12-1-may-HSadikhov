@@ -1,0 +1,43 @@
+import java.util.HashMap;
+
+@FunctionalInterface
+interface GradeRule {
+    boolean test(int grade);
+}
+
+public class GradeFilter {
+    public static void main(String[] args) {
+
+        HashMap<String, Integer> grades = new HashMap<>();
+
+        grades.put("Ali", 85);
+        grades.put("Leyla", 92);
+        grades.put("Murad", 55);
+        grades.put("Nigar", 70);
+        grades.put("Kamran", 40);
+
+        
+        GradeRule passedRule = grade -> grade >= 50;
+
+        
+        GradeRule excellentRule = grade -> grade >= 85;
+
+        System.out.println("Passed students:");
+
+        
+        grades.forEach((student, grade) -> {
+            if (passedRule.test(grade)) {
+                System.out.println(student + " -> " + grade);
+            }
+        });
+
+        System.out.println("\nExcellent students:");
+
+        
+        grades.forEach((student, grade) -> {
+            if (excellentRule.test(grade)) {
+                System.out.println(student + " -> " + grade);
+            }
+        });
+    }
+}
